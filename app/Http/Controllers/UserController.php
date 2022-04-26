@@ -141,14 +141,39 @@ class UserController extends Controller
     {
         $curent_user = Auth::id();
 
+        // $receiver = DB::table('friend_requests')
+        //     ->get('receiver');
+        // dd($receiver);
+
         $users = DB::table('users')
             ->join('friend_requests', 'users.id', '=', 'friend_requests.sender')
             ->where('receiver', $curent_user)
-            ->orWhere('sender', $curent_user)
+            // ->orWhere('sender', $curent_user)
             ->where('is_accepted', 1)
-            ->get();
+            ->get('users.id');
 
-        return view('friends', compact('users'));
+        if ($users = $curent_user) {
+            $data = DB::table('users')
+                ->join('friend_requests', 'users.id', '=', 'friend_requests.sender')
+                ->where('receiver', $curent_user)
+                // ->orWhere('sender', $curent_user)
+                ->where('is_accepted', 1)
+                ->get();
+
+            return view('friends', compact('data'));
+        } else {
+            $data = DB::table('users')
+                ->join('friend_requests', 'users.id', '=', 'friend_requests.sender')
+                // ->where('receiver', $curent_user)
+                ->orWhere('sender', $curent_user)
+                ->where('is_accepted', 1)
+                ->get();
+
+            return view('friends', compact('data'));
+        }
+        // dd($users);
+
+        // return view('friends', compact('data'));
     }
 
     public function deleteFriend($id)

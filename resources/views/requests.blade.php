@@ -3,7 +3,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>Friend requests</h1>
+            <h1>Friend requests {{ auth()->guard('web')->user()->email }}</h1>
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>

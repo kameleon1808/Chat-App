@@ -3,7 +3,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>Friends</h1>
+            <h1>Friends {{ auth()->guard('web')->user()->email }}</h1>
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>
@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                     {{-- @if ($users->count()) --}}
-                    @foreach ($users as $user)
+                    @foreach ($data as $user)
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
