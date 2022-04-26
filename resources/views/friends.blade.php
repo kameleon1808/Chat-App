@@ -3,7 +3,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>Friend requests</h1>
+            <h1>Friends</h1>
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>
@@ -24,13 +24,14 @@
                                         <p class="fw-bold mb-1">John Doe</p>
                                         <p class="text-muted mb-0">{{ $user->email }}</p>
                                         <input type="hidden" name="receiver" value="{{ $user->id }}">
-                                        <input type="hidden" name="receiver" value="{{ $user->email }}">
+                                        <input type="hidden" name="email" value="{{ $user->email }}">
+                                        <input type="hidden" name="sender" value="{{ $user->sender }}">
                                     </div>
                                 </div>
                             </td>
 
                             <td>
-                                <a href="{{ 'delete/' . $user->id }}" class="btn btn-link btn-sm btn-rounded">
+                                <a href="{{ 'delete-friend/' . $user->id }}" class="btn btn-link btn-sm btn-rounded">
                                     Delete
                                 </a>
                                 {{-- <form action="{{ url('comfirm/' . $user->id) }}" method="post">

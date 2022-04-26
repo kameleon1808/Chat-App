@@ -23,13 +23,18 @@
                     <button type="submit" class="btn btn-outline-primary">search</button>
                 </div>
             </form>
-            {{-- ========================================================================================== --}}
+            {{-- ============================ALL FRIEND REQUESTS=============================================== --}}
             <br><br>
             <form action="{{ route('showRequests') }}" method="get">
                 <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
                     request</button>
             </form>
-
+            {{-- ============================ALL FRIENDS=============================================== --}}
+            <br><br>
+            <form action="{{ route('showFriends') }}" method="get">
+                <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
+                    friends</button>
+            </form>
 
 
         </div>

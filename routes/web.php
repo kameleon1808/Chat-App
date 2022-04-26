@@ -31,8 +31,10 @@ Route::view('/search-res', 'search-res')->name('search-res');
 
 Route::get('/user-info/{id}', [UserController::class, 'showProfile'])->name('showProfile');
 Route::get('/requests', [UserController::class, 'showRequests'])->name('showRequests');
+Route::get('/friends', [UserController::class, 'showFriends'])->name('showFriends');
 Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
 Route::put('/comfirm/{id}', [UserController::class, 'comfirm'])->name('comfirm');
+Route::get('/delete-friend/{id}', [UserController::class, 'deleteFriend'])->name('deleteFriend');
 
 
 // Route::put('update-cart/{id}', [CartController::class, 'update']);

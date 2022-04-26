@@ -130,15 +130,6 @@ class UserController extends Controller
 
     public function comfirm(Request $request, $id)
     {
-        $reciever = Auth::id();
-        $sender = $request->input('sender');
-        dd($sender);
-
-        $friend = new Friends();
-        $friend->sender = $sender;
-        $friend->reciever = $reciever;
-        $friend->save();
-
         $data = FriendRequests::find($id);
         $data->is_accepted = 1;
         $data->update();
@@ -146,16 +137,26 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'You are comfirm request');
     }
 
-    // public function addFriend(Request $request)
-    // {
-    //     $reciever = Auth::id();
-    //     $sender = $request->input('sender');
+    public function showFriends(Request $request)
+    {
+        $curent_user = Auth::id();
 
-    //     $friend = new Friends();
-    //     $friend->sender = $sender;
-    //     $friend->reciever = $reciever;
-    //     $friend->save();
-    // }
+        $users = DB::table('users')
+            ->join('friend_requests', 'users.id', '=', 'friend_requests.sender')
+            ->where('receiver', $curent_user)
+            ->orWhere('sender', $curent_user)
+            ->where('is_accepted', 1)
+            ->get();
+
+        return view('friends', compact('users'));
+    }
+
+    public function deleteFriend($id)
+    {
+        $data = FriendRequests::find($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'You are delete friend');
+    }
 
     /**
      * Store a newly created resource in storage.
