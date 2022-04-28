@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('friend_requests', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->text('message_text')->nullable();
+            $table->string('user_email');
 
             $table->bigInteger('sender')->unsigned();
             $table->foreign('sender')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('receiver')->unsigned();
-            $table->foreign('receiver')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('room_id')->unsigned();
+            $table->foreign('room_id')->references('id')->on('chat_rooms')->onDelete('cascade');
 
-            $table->integer('acted_user')->nullable()->index();
 
-            $table->boolean('is_accepted')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friend_requests');
+        Schema::dropIfExists('messages');
     }
 };

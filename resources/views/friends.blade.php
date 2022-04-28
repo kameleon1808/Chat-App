@@ -12,7 +12,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @if ($users->count()) --}}
+                    {{-- @if ($data->receiver = auth()->guard('web')->user()->id) --}}
                     @foreach ($data as $user)
                         <tr>
                             <td>
@@ -23,9 +23,20 @@
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1">John Doe</p>
                                         <p class="text-muted mb-0">{{ $user->email }}</p>
+
+
+                                        {{-- ========================================================= --}}
+                                        {{-- @if ($user->sender = $user->id)
+                                            <p>If grana</p>
+                                            <p class="text-muted mb-0">{{ $user->email }}</p>
+                                        @elseif ($user->receiver = $user->id)
+                                            <p>Else grana</p>
+                                            <p class="text-muted mb-0">{{ $user->email }}</p>
+                                        @endif --}}
+                                        {{-- ========================================================= --}}
                                         <input type="hidden" name="receiver" value="{{ $user->id }}">
-                                        <input type="hidden" name="email" value="{{ $user->email }}">
-                                        <input type="hidden" name="sender" value="{{ $user->sender }}">
+                                        {{-- <input type="hidden" name="email" value="{{ $user->email }}"> --}}
+                                        {{-- <input type="hidden" name="sender" value="{{ $user->sender }}"> --}}
                                     </div>
                                 </div>
                             </td>
@@ -44,7 +55,7 @@
                             </td>
                         </tr>
                     @endforeach
-                    {{-- @else
+                    {{-- @elseif ($data->sender = auth()->guard('web')->user()->id)
                         <tr>
                             <td>
                                 No user found
