@@ -18,6 +18,8 @@
                             of
                             the card's content.</p>
                         <button type="submit" class="btn btn-primary">Add friend</button>
+
+                        <a href="{{ route('chat') }}" type="button" class="btn btn-primary">Send message</a>
                     </div>
                 </div>
             </form>

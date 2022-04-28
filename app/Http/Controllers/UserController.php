@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatRoom;
 use App\Models\FriendRequests;
 use App\Models\Friends;
 use App\Models\User;
@@ -141,6 +142,21 @@ class UserController extends Controller
     public function showFriends(Request $request)
     {
         //
+    }
+
+    public function createChatRoom(Request $request, $id)
+    {
+        $user_1 = Auth::id();
+        $user_2 = 5;
+        $chat_name = $user_1 . '-' . $user_2;
+
+        $chat_room = new ChatRoom();
+        $chat_room->user_one = $user_1;
+        $chat_room->user_two = $user_2;
+        $chat_room->name = $chat_name;
+        $chat_room->save();
+
+        return redirect()->back()->with('success', 'You are created chat room');
     }
 
     public function deleteFriend($id)
