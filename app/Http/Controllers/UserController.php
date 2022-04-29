@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChatRoom;
 use App\Models\FriendRequests;
 use App\Models\Friends;
+use App\Models\Message;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -150,15 +151,73 @@ class UserController extends Controller
         $user_1 = Auth::id();
         $user_2 = $request->input('user_id');
         $chat_name = $user_1 . '-' . $user_2;
+        $chat = ChatRoom::where('name', $chat_name)->first();
 
-        $chat_room = new ChatRoom();
-        $chat_room->user_one = $user_1;
-        $chat_room->user_two = $user_2;
-        $chat_room->name = $chat_name;
-        $chat_room->save();
+        $users = DB::table('users')
+            ->join('messages', 'users.id', '=', 'messages.sender')
+            // ->where('room_id', $chat)
+            ->get();
 
-        return redirect()->route('chat')->with('success', 'You are created chat room');
+        if ($chat) {
+            return view('chat', compact('users'));
+
+            // $this->showChat($chat_name);
+        } else {
+            $chat_room = new ChatRoom();
+            $chat_room->user_one = $user_1;
+            $chat_room->user_two = $user_2;
+            $chat_room->name = $chat_name;
+            $chat_room->save();
+            return redirect()->back()->with('success', 'You are created chat room');
+        }
     }
+
+    public function showChats()
+    {
+        $chat = Auth::id();
+
+        $users = DB::table('users')
+            ->join('chat_rooms', 'users.id', '=', 'chat_rooms.user_one')
+            // ->join('chat_rooms', 'users.id', '=', 'chat_rooms.user_two')
+
+            ->where('user_one', $chat)
+            ->orWhere('user_two', $chat)
+            ->get();
+
+        return view('chats', compact('users'));
+    }
+
+    public function showChat($chat_name)
+    {
+        $chat = ChatRoom::where('name', $chat_name)->firstOrFail();
+
+        $users = DB::table('users')
+            ->join('messages', 'users.id', '=', 'messages.sender')
+            // ->where('room_id', $chat)
+            ->get();
+
+        return view('chat', compact('users'));
+    }
+
+    public function createMessage(Request $request)
+    {
+        $message_text = $request->input('message');
+        $user_email = auth()->guard('web')->user()->email;
+        $sender = Auth::id();
+        $room_id = $request->input('room_id');
+
+        $mess = new Message();
+        $mess->message_text = $message_text;
+        $mess->user_email = $user_email;
+        $mess->sender = $sender;
+        $mess->room_id = $room_id;
+        // dd($mess);
+        $mess->save();
+
+        return redirect()->back();
+    }
+
+
 
     public function deleteFriend($id)
     {

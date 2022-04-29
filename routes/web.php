@@ -28,7 +28,7 @@ Route::view('/home', 'home')->name('home');
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register')->name('register');
 Route::view('/search-res', 'search-res')->name('search-res');
-Route::view('/chat', 'chat')->name('chat');
+// Route::view('/chat/{$chat_name}', 'chat')->name('chat');
 
 
 Route::get('/user-info/{id}', [UserController::class, 'showProfile'])->name('showProfile');
@@ -37,6 +37,8 @@ Route::get('/friends', [UserController::class, 'showFriends'])->name('showFriend
 Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
 Route::put('/comfirm/{id}', [UserController::class, 'comfirm'])->name('comfirm');
 Route::get('/delete-friend/{id}', [UserController::class, 'deleteFriend'])->name('deleteFriend');
+Route::get('/chat/{name}', [UserController::class, 'showChat'])->name('showChat');
+Route::get('/chats', [UserController::class, 'showChats'])->name('showChats');
 
 
 
@@ -47,3 +49,4 @@ Route::post('/check', [UserController::class, 'check'])->name('check');
 Route::post('/search', [UserController::class, 'search'])->name('search');
 Route::post('/add-friend', [UserController::class, 'sendRequest'])->name('add-friend');
 Route::post('/create-chat', [UserController::class, 'createChatRoom'])->name('create-chat');
+Route::post('/send-message', [UserController::class, 'createMessage'])->name('send-message');

@@ -6,35 +6,36 @@
             <h1>Chat room {{ auth()->guard('web')->user()->email }}</h1>
 
             <div class="form-outline">
-                <input type="text" id="typeText" class="form-control" />
+                <input type="text" id="typeText" class="form-control" value="" />
                 <label class="form-label" for="typeText">Mail address</label><br><br>
             </div>
 
-            <div>
-                <ol class="list-group list-group-light list-group-numbered">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold">Subheading</div>
-                            Cras justo odio
-                        </div>
-                        <span class="badge badge-primary rounded-pill">14</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold">Subheading</div>
-                            Cras justo odio
-                        </div>
-                        <span class="badge badge-primary rounded-pill">14</span>
-                    </li>
-                </ol><br><br>
-            </div>
+            @foreach ($users as $user)
+                <input type="hidden" name="room_id" value="{{ $user->room_id }}">
+                <div>
+                    <ul class="list-group list-group-light list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Sender: {{ $user->email }}</div>
+                                {{ $user->message_text }}
+                            </div>
+                            <span class="badge badge-primary rounded-pill">14</span>
+                        </li>
+
+                    </ul><br><br>
+                </div>
+            @endforeach
 
 
-            <div class="form-outline">
-                <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
-                <label class="form-label" for="textAreaExample">Message</label>
-            </div>
+            <form action="{{ route('send-message') }}" method="post">
+                @csrf
+                <div class="form-outline">
+                    <input type="hidden" name="room_id" value="{{ $user->room_id }}">
+                    <textarea name="message" class="form-control" id="textAreaExample" rows="4"></textarea>
+                    <label class="form-label" for="textAreaExample">Message</label>
+                </div>
+                <button type="submit" class="btn btn-success">Send</button>
+            </form>
 
-            <button type="button" class="btn btn-success">Send</button>
         </div>
     </div>

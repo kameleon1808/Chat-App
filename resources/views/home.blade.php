@@ -35,7 +35,12 @@
                 <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
                     friends</button>
             </form>
-
+            {{-- ============================ALL MESSAGES=============================================== --}}
+            <br><br>
+            <form action="{{ route('showChats') }}" method="get">
+                <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
+                    messages</button>
+            </form>
 
         </div>
     </div>

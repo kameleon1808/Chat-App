@@ -29,7 +29,9 @@
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $data->id }}">
 
-                <button type="submit" class="btn btn-primary">Send message</button>
+                <button type="submit" class="btn btn-primary">Create chat room</button>
+                <a href="{{ 'chat/1-2' }}" type="button" class="btn btn-primary">Send message</a>
+                {{-- <a href="{{ 'user-info/' . $user['id'] }}" --}}
             </form>
         </div>
     </div>
