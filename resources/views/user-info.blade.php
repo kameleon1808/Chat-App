@@ -3,6 +3,8 @@
 <body>
     <div class="container">
         <div class="row">
+            {{-- <input type="hidden" name="user_id" value="{{ $data->id }}"> --}}
+
             <form action="{{ route('add-friend') }}" method="post">
                 @csrf
                 @if (session()->get('success'))
@@ -10,7 +12,6 @@
                         {{ session()->get('success') }}
                     </div>
                 @endif
-                <input type="hidden" name="id" value="{{ $data->id }}">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ $data->email }}</h5>
@@ -19,9 +20,16 @@
                             the card's content.</p>
                         <button type="submit" class="btn btn-primary">Add friend</button>
 
-                        <a href="{{ route('chat') }}" type="button" class="btn btn-primary">Send message</a>
+                        {{-- <a href="{{ route('chat') }}" type="button" class="btn btn-primary">Send message</a> --}}
                     </div>
                 </div>
+            </form>
+
+            <form action="{{ route('create-chat') }}" method="post">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $data->id }}">
+
+                <button type="submit" class="btn btn-primary">Send message</button>
             </form>
         </div>
     </div>

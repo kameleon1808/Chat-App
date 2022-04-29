@@ -46,3 +46,4 @@ Route::post('/create', [UserController::class, 'create'])->name('create');
 Route::post('/check', [UserController::class, 'check'])->name('check');
 Route::post('/search', [UserController::class, 'search'])->name('search');
 Route::post('/add-friend', [UserController::class, 'sendRequest'])->name('add-friend');
+Route::post('/create-chat', [UserController::class, 'createChatRoom'])->name('create-chat');

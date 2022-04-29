@@ -144,10 +144,11 @@ class UserController extends Controller
         //
     }
 
-    public function createChatRoom(Request $request, $id)
+    public function createChatRoom(Request $request)
+    // public function createChatRoom()
     {
         $user_1 = Auth::id();
-        $user_2 = 5;
+        $user_2 = $request->input('user_id');
         $chat_name = $user_1 . '-' . $user_2;
 
         $chat_room = new ChatRoom();
@@ -156,7 +157,7 @@ class UserController extends Controller
         $chat_room->name = $chat_name;
         $chat_room->save();
 
-        return redirect()->back()->with('success', 'You are created chat room');
+        return redirect()->route('chat')->with('success', 'You are created chat room');
     }
 
     public function deleteFriend($id)
