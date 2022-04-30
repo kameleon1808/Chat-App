@@ -30,11 +30,11 @@
                     request</button>
             </form> --}}
             {{-- ============================ALL FRIENDS=============================================== --}}
-            {{-- <br><br>
+            <br><br>
             <form action="{{ route('showFriends') }}" method="get">
                 <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
                     friends</button>
-            </form> --}}
+            </form>
             {{-- ============================ALL CHAT ROOMS=============================================== --}}
             <br><br>
             <form action="{{ route('showChatRooms') }}" method="get">

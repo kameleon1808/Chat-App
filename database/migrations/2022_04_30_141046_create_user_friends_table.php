@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('user_friends', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            // $table->bigInteger('sender')->unsigned();
-            // $table->foreign('sender')->references('id')->on('users')->onDelete('cascade');
-            // $table->bigInteger('receiver')->unsigned();
-            // $table->foreign('receiver')->references('id')->on('users')->onDelete('cascade');
+
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('friend_id')->unsigned();
+            $table->foreign('friend_id')->references('id')->on('friends')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('user_friends');
     }
 };

@@ -142,7 +142,18 @@ class UserController extends Controller
 
     public function showFriends(Request $request)
     {
-        //
+        $chat = Auth::id();
+
+        $users = DB::table('user_friends')
+            ->join('users', 'user_friends.user_id', '=', 'users.id')
+            ->join('friends', 'user_friends.friend_id', '=', 'friends.id')
+
+            ->where('user_id', '!=', $chat)
+            ->get();
+
+        // dd($users);
+
+        return view('chats', compact('users'));
     }
 
     public function createChatRoom(Request $request)

@@ -21,17 +21,17 @@
                                             style="width: 45px; height: 45px" class="rounded-circle" />
 
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1">{{ $user->name }}</p>
-                                            <p class="text-muted mb-0">{{ $user->room_id }}</p>
+                                            <p class="fw-bold mb-1">{{ $user->email }}</p>
+                                            <p class="text-muted mb-0">{{ $user->user_id }}</p>
                                             <input type="hidden" name="receiver" value="{{ $user->id }}">
                                         </div>
                                     </div>
                                 </td>
 
                                 <td>
-                                    <a href="chat/{{ $user->room_id }}" class="btn btn-link btn-sm btn-rounded">
+                                    {{-- <a href="chat/{{ $user->room_id }}" class="btn btn-link btn-sm btn-rounded">
                                         View details
-                                    </a>
+                                    </a> --}}
                                     {{-- <form action="{{ route('chat') }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn btn-link btn-sm btn-rounded">

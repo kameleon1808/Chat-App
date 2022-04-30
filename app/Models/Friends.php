@@ -12,8 +12,8 @@ class Friends extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function users_friend()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(UserFriend::class, 'friend_id');
     }
 }
