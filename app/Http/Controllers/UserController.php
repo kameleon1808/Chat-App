@@ -180,7 +180,7 @@ class UserController extends Controller
             ->join('users_rooms', 'chat_rooms.id', '=', 'users_rooms.room_id')
             ->where('user_id', $chat)
             ->get();
-
+        // dd($users);
         return view('chats', compact('users'));
     }
 
@@ -194,21 +194,18 @@ class UserController extends Controller
             ->where('room_id', $chat->id)
             ->get();
 
-
         return view('chat', compact('users'));
     }
 
     public function createMessage(Request $request)
     {
         $message_text = $request->input('message');
-        $user_email = auth()->guard('web')->user()->email;
-        $sender = Auth::id();
+        $user_id = Auth::id();
         $room_id = $request->input('room_id');
 
         $mess = new Message();
         $mess->message_text = $message_text;
-        $mess->user_email = $user_email;
-        $mess->sender = $sender;
+        $mess->user_id = $user_id;
         $mess->room_id = $room_id;
         // dd($mess);
         $mess->save();

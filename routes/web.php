@@ -14,15 +14,8 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 
 Auth::routes();
-// Route::post('/update/token', 'Auth\RegisterController@updateToken')->name('updateToken');
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::view('/home', 'home')->name('home');
 Route::view('/login', 'login')->name('login');

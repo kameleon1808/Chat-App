@@ -22,17 +22,17 @@
 
                                         <div class="ms-3">
                                             <p class="fw-bold mb-1">{{ $user->name }}</p>
-                                            <p class="text-muted mb-0">{{ $user->id }}</p>
+                                            <p class="text-muted mb-0">{{ $user->room_id }}</p>
                                             <input type="hidden" name="receiver" value="{{ $user->id }}">
                                         </div>
                                     </div>
                                 </td>
 
                                 <td>
-                                    {{-- <a href="{{ 'user-info/' . $user['id'] }}" class="btn btn-link btn-sm btn-rounded">
+                                    <a href="chat/{{ $user->room_id }}" class="btn btn-link btn-sm btn-rounded">
                                         View details
-                                    </a> --}}
-                                    {{-- <form action="{{ route('show-chat') }}" method="post">
+                                    </a>
+                                    {{-- <form action="{{ route('chat') }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn btn-link btn-sm btn-rounded">
                                             Send messagee
