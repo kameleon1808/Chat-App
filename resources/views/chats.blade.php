@@ -32,10 +32,10 @@
                                     {{-- <a href="{{ 'user-info/' . $user['id'] }}" class="btn btn-link btn-sm btn-rounded">
                                         View details
                                     </a> --}}
-                                    {{-- <form action="{{ route('add-friend') }}" method="post">
+                                    {{-- <form action="{{ route('show-chat') }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn btn-link btn-sm btn-rounded">
-                                            Add friend
+                                            Send messagee
                                         </button>
                                     </form> --}}
                                 </td>

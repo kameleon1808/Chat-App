@@ -176,8 +176,6 @@ class UserController extends Controller
     {
         $chat = Auth::id();
 
-        // SELECT * FROM chat_rooms JOIN users_rooms on chat_rooms.id = users_rooms.room_id 
-
         $users = DB::table('chat_rooms')
             ->join('users_rooms', 'chat_rooms.id', '=', 'users_rooms.room_id')
             ->where('user_id', $chat)
@@ -186,16 +184,18 @@ class UserController extends Controller
         return view('chats', compact('users'));
     }
 
-    public function showChat($chat_name)
+    public function showChat($id)
     {
-        // $chat = ChatRoom::where('name', $chat_name)->firstOrFail();
+        $chat = ChatRoom::where('id', $id)->firstOrFail();
+        $user = Auth::id();
 
-        // $users = DB::table('users')
-        //     ->join('messages', 'users.id', '=', 'messages.sender')
-        //     // ->where('room_id', $chat)
-        //     ->get();
+        $users = DB::table('users')
+            ->join('messages', 'users.id', '=', 'messages.user_id')
+            ->where('room_id', $chat->id)
+            ->get();
 
-        // return view('chat', compact('users'));
+
+        return view('chat', compact('users'));
     }
 
     public function createMessage(Request $request)

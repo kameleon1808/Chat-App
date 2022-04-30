@@ -16,13 +16,12 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->text('message_text')->nullable();
-            $table->string('user_email');
+            // $table->string('user_email');
 
-            $table->bigInteger('sender')->unsigned();
-            $table->foreign('sender')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('chat_rooms')->onDelete('cascade');
-
 
             $table->timestamps();
         });

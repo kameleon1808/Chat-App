@@ -16,7 +16,7 @@ class ChatRoom extends Model
 
     public function message()
     {
-        return $this->hasMany(Message::class, 'sender');
+        return $this->hasMany(Message::class, 'user_id');
         // return $this->hasMany(ChatRoom::class, 'user_one', 'user_two');
     }
 
