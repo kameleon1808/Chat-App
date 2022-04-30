@@ -172,16 +172,15 @@ class UserController extends Controller
         }
     }
 
-    public function showChats()
+    public function showChatRooms()
     {
         $chat = Auth::id();
 
-        $users = DB::table('users')
-            ->join('chat_rooms', 'users.id', '=', 'chat_rooms.user_one')
-            // ->join('chat_rooms', 'users.id', '=', 'chat_rooms.user_two')
+        // SELECT * FROM chat_rooms JOIN users_rooms on chat_rooms.id = users_rooms.room_id 
 
-            ->where('user_one', $chat)
-            ->orWhere('user_two', $chat)
+        $users = DB::table('chat_rooms')
+            ->join('users_rooms', 'chat_rooms.id', '=', 'users_rooms.room_id')
+            ->where('user_id', $chat)
             ->get();
 
         return view('chats', compact('users'));
@@ -189,14 +188,14 @@ class UserController extends Controller
 
     public function showChat($chat_name)
     {
-        $chat = ChatRoom::where('name', $chat_name)->firstOrFail();
+        // $chat = ChatRoom::where('name', $chat_name)->firstOrFail();
 
-        $users = DB::table('users')
-            ->join('messages', 'users.id', '=', 'messages.sender')
-            // ->where('room_id', $chat)
-            ->get();
+        // $users = DB::table('users')
+        //     ->join('messages', 'users.id', '=', 'messages.sender')
+        //     // ->where('room_id', $chat)
+        //     ->get();
 
-        return view('chat', compact('users'));
+        // return view('chat', compact('users'));
     }
 
     public function createMessage(Request $request)

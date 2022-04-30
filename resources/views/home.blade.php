@@ -24,22 +24,28 @@
                 </div>
             </form>
             {{-- ============================ALL FRIEND REQUESTS=============================================== --}}
-            <br><br>
+            {{-- <br><br>
             <form action="{{ route('showRequests') }}" method="get">
                 <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
                     request</button>
-            </form>
+            </form> --}}
             {{-- ============================ALL FRIENDS=============================================== --}}
-            <br><br>
+            {{-- <br><br>
             <form action="{{ route('showFriends') }}" method="get">
                 <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
                     friends</button>
-            </form>
+            </form> --}}
             {{-- ============================ALL MESSAGES=============================================== --}}
-            <br><br>
+            {{-- <br><br>
             <form action="{{ route('showChats') }}" method="get">
                 <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
                     messages</button>
+            </form> --}}
+            {{-- ============================ALL MESSAGES=============================================== --}}
+            <br><br>
+            <form action="{{ route('showChatRooms') }}" method="get">
+                <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">All
+                    chat rooms</button>
             </form>
 
         </div>

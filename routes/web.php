@@ -38,7 +38,8 @@ Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
 Route::put('/comfirm/{id}', [UserController::class, 'comfirm'])->name('comfirm');
 Route::get('/delete-friend/{id}', [UserController::class, 'deleteFriend'])->name('deleteFriend');
 Route::get('/chat/{name}', [UserController::class, 'showChat'])->name('showChat');
-Route::get('/chats', [UserController::class, 'showChats'])->name('showChats');
+
+Route::get('/chat-rooms', [UserController::class, 'showChatRooms'])->name('showChatRooms');
 
 
 
