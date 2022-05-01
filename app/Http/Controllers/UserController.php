@@ -7,11 +7,12 @@ use App\Models\FriendRequests;
 use App\Models\Friends;
 use App\Models\Message;
 use App\Models\User;
-
+use App\Models\UsersRoom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
 {
@@ -157,28 +158,34 @@ class UserController extends Controller
     }
 
     public function createChatRoom(Request $request)
-    // public function createChatRoom()
     {
+        DB::beginTransaction();
+
         $user_1 = Auth::id();
         $user_2 = $request->input('user_id');
         $chat_name = $user_1 . '-' . $user_2;
-        $chat = ChatRoom::where('name', $chat_name)->first();
 
-        $users = DB::table('users')
-            ->join('messages', 'users.id', '=', 'messages.sender')
-            // ->where('room_id', $chat)
-            ->get();
+        $chat = ChatRoom::where('name', $chat_name)->first();
 
         if ($chat) {
             return view('chat', compact('users'));
-
-            // $this->showChat($chat_name);
         } else {
-            $chat_room = new ChatRoom();
-            $chat_room->user_one = $user_1;
-            $chat_room->user_two = $user_2;
-            $chat_room->name = $chat_name;
-            $chat_room->save();
+
+            $chat_room = ChatRoom::create([
+                'name' => $chat_name
+            ]);
+
+            $users_rooms = UsersRoom::create([
+                'room_id' => $chat_room->id,
+                'user_id' => $user_1,
+            ]);
+
+            $users_rooms2 = UsersRoom::create([
+                'room_id' => $chat_room->id,
+                'user_id' => $user_2,
+            ]);
+            DB::commit();
+
             return redirect()->back()->with('success', 'You are created chat room');
         }
     }
@@ -187,11 +194,12 @@ class UserController extends Controller
     {
         $chat = Auth::id();
 
-        $users = DB::table('chat_rooms')
-            ->join('users_rooms', 'chat_rooms.id', '=', 'users_rooms.room_id')
+        $users = DB::table('users_rooms')
+            ->join('chat_rooms', 'users_rooms.room_id', '=', 'chat_rooms.id')
+            ->join('users', 'users_rooms.user_id', '=', 'users.id')
             ->where('user_id', $chat)
             ->get();
-        // dd($users);
+
         return view('chats', compact('users'));
     }
 

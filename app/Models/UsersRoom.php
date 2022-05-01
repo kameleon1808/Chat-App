@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UsersRoom extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
