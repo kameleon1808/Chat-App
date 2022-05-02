@@ -29,9 +29,9 @@
                                 </td>
 
                                 <td>
-                                    {{-- <a href="chat/{{ $user->room_id }}" class="btn btn-link btn-sm btn-rounded">
-                                        View details
-                                    </a> --}}
+                                    <a href="chat/{{ $user->room_id }}" class="btn btn-link btn-sm btn-rounded">
+                                        Send message
+                                    </a>
                                     {{-- <form action="{{ route('chat') }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn btn-link btn-sm btn-rounded">

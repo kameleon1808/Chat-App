@@ -20,7 +20,7 @@
                                 <div class="fw-bold">Sender: {{ $user->email }}</div>
                                 {{ $user->message_text }}
                             </div>
-                            <span class="badge badge-primary rounded-pill">14</span>
+                            <span class="badge badge-primary rounded-pill">{{ $user->created_at }}</span>
                         </li><br>
                     @endforeach
                 </ul>
@@ -30,7 +30,7 @@
             <form action="{{ route('send-message') }}" method="post">
                 @csrf
                 <div class="form-outline">
-                    <input type="hidden" name="room_id" value="{{ $user->room_id }}">
+                    <input type="hidden" name="room_id" value="{{ $users[0]->room_id }}">
                     <textarea name="message" class="form-control" id="textAreaExample" rows="4"></textarea>
                     <label class="form-label" for="textAreaExample">Message</label>
                 </div>

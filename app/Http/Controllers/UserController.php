@@ -167,8 +167,14 @@ class UserController extends Controller
 
         $chat = ChatRoom::where('name', $chat_name)->first();
 
+        $users = DB::table('users_rooms')
+            ->join('chat_rooms', 'users_rooms.room_id', '=', 'chat_rooms.id')
+            ->join('users', 'users_rooms.user_id', '=', 'users.id')
+            ->where('user_id', Auth::id())
+            ->get();
+
         if ($chat) {
-            return view('chat', compact('users'));
+            return view('chats', compact('users'));
         } else {
 
             $chat_room = ChatRoom::create([
@@ -212,6 +218,7 @@ class UserController extends Controller
             ->join('messages', 'users.id', '=', 'messages.user_id')
             ->where('room_id', $chat->id)
             ->get();
+        // dd($users);
 
         return view('chat', compact('users'));
     }

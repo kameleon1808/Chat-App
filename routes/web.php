@@ -21,6 +21,8 @@ Route::view('/home', 'home')->name('home');
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register')->name('register');
 Route::view('/search-res', 'search-res')->name('search-res');
+Route::view('/chat-rooms', 'chat-rooms')->name('chat-rooms');
+
 // Route::view('/chat/{$chat_name}', 'chat')->name('chat');
 
 
