@@ -127,6 +127,7 @@ class UserController extends Controller
     public function delete($id)
     {
         $data = FriendRequests::find($id);
+        dd($data);
         $data->delete();
         return redirect()->back()->with('success', 'You are delete request');
     }
@@ -243,8 +244,17 @@ class UserController extends Controller
     public function deleteFriend($id)
     {
         $data = FriendRequests::find($id);
+        dd($data);
         $data->delete();
         return redirect()->back()->with('success', 'You are delete friend');
+    }
+
+    public function deleteMessage($id)
+    {
+        $data = Message::find($id);
+        dd($data);
+        $data->delete();
+        return redirect()->back()->with('success', 'You are delete message');
     }
 
     /**
