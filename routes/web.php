@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FriendsController;
+use App\Http\Controllers\MessageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,33 +20,35 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 
+
+Route::view('/search-res', 'search-res')->name('search-res');
+Route::view('/chat-rooms', 'chat-rooms')->name('chat-rooms');
 Route::view('/home', 'home')->name('home');
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register')->name('register');
-Route::view('/search-res', 'search-res')->name('search-res');
-Route::view('/chat-rooms', 'chat-rooms')->name('chat-rooms');
-
 // Route::view('/chat/{$chat_name}', 'chat')->name('chat');
 
-
+//=========================USER CONTROLLER====================================================
 Route::get('/user-info/{id}', [UserController::class, 'showProfile'])->name('showProfile');
-Route::get('/requests', [UserController::class, 'showRequests'])->name('showRequests');
-Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
-Route::put('/comfirm/{id}', [UserController::class, 'comfirm'])->name('comfirm');
-Route::get('/delete-friend/{id}', [UserController::class, 'deleteFriend'])->name('deleteFriend');
-
-
-Route::get('/friends', [UserController::class, 'showFriends'])->name('showFriends');
-Route::get('/chat-rooms', [UserController::class, 'showChatRooms'])->name('showChatRooms');
-Route::get('/chat/{id}', [UserController::class, 'showChat'])->name('showChat');
-Route::get('/deleteMessage/{id}', [UserController::class, 'deleteMessage'])->name('deleteMessage');
-
-
-
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/create', [UserController::class, 'create'])->name('create');
 Route::post('/check', [UserController::class, 'check'])->name('check');
 Route::post('/search', [UserController::class, 'search'])->name('search');
-Route::post('/add-friend', [UserController::class, 'sendRequest'])->name('add-friend');
-Route::post('/create-chat', [UserController::class, 'createChatRoom'])->name('create-chat');
-Route::post('/send-message', [UserController::class, 'createMessage'])->name('send-message');
+//============================================================================================
+
+//====================MESSAGE CONTROLLER======================================================
+Route::get('/chat-rooms', [MessageController::class, 'showChatRooms'])->name('showChatRooms'); //
+Route::get('/chat/{id}', [MessageController::class, 'showChat'])->name('showChat');
+Route::get('/deleteMessage/{id}', [MessageController::class, 'deleteMessage'])->name('deleteMessage');
+Route::post('/create-chat', [MessageController::class, 'createChatRoom'])->name('create-chat');
+Route::post('/send-message', [MessageController::class, 'createMessage'])->name('send-message');
+//============================================================================================
+
+//====================FRIENDS CONTROLLER======================================================
+Route::get('/requests', [FriendsController::class, 'showRequests'])->name('showRequests');
+Route::get('/delete/{id}', [FriendsController::class, 'delete'])->name('delete');
+Route::get('/delete-friend/{id}', [FriendsController::class, 'deleteFriend'])->name('deleteFriend');
+Route::get('/friends', [FriendsController::class, 'showFriends'])->name('showFriends');
+Route::put('/comfirm/{id}', [FriendsController::class, 'comfirm'])->name('comfirm');
+Route::post('/add-friend', [FriendsController::class, 'sendRequest'])->name('add-friend');
+//============================================================================================
