@@ -30,9 +30,9 @@ Route::view('/register', 'register')->name('register');
 
 //=========================USER CONTROLLER====================================================
 Route::get('/user-info/{id}', [UserController::class, 'showProfile'])->name('showProfile');
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/create', [UserController::class, 'create'])->name('create');
 Route::post('/check', [UserController::class, 'check'])->name('check');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/search', [UserController::class, 'search'])->name('search');
 //============================================================================================
 
