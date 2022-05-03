@@ -46,9 +46,14 @@ class MessageController extends Controller
     public function deleteMessage($id)
     {
         $data = Message::find($id);
-        // dd($data);
-        $data->delete();
-        return redirect()->back()->with('success', 'You are delete message');
+        dd($data->user_id == Auth::id());
+
+        if ($data->user_id == Auth::id()) {
+            $data->delete();
+            return redirect()->back()->with('success', 'You are delete message');
+        } else {
+            return redirect()->back()->with('warrning', 'You cant delete this message');
+        }
     }
 
     public function createChatRoom(Request $request)

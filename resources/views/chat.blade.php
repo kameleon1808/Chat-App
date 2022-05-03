@@ -28,14 +28,13 @@
                             </div>
                             <span class="badge badge-primary rounded-pill">{{ $user->created_at }}</span>
 
-                            {{-- <a href="{{ 'deleteMessage/' . $user->id }}" class="btn btn-link btn-sm btn-rounded">
+                            {{-- <a href="/deleteMessage/{{ $user->id }}" class="btn btn-link btn-sm btn-rounded">
                                 Delete
                             </a> --}}
-
                             <form action="/deleteMessage/{{ $user->id }}" method="get">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="delete">
+                                <input value="Delete" type="submit" class="btn btn-link btn-sm btn-rounded">
                             </form>
 
                         </li><br>
