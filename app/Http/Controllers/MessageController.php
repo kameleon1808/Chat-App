@@ -46,7 +46,7 @@ class MessageController extends Controller
     public function deleteMessage($id)
     {
         $data = Message::find($id);
-        dd($data);
+        // dd($data);
         $data->delete();
         return redirect()->back()->with('success', 'You are delete message');
     }

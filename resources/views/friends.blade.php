@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                     {{-- @if ($data->receiver = auth()->guard('web')->user()->id) --}}
-                    @foreach ($data as $user)
+                    @foreach ($users as $user)
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">

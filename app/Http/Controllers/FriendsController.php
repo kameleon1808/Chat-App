@@ -56,7 +56,7 @@ class FriendsController extends Controller
 
         // dd($users);
 
-        return view('chats', compact('users'));
+        return view('friends', compact('users'));
     }
 
     public function comfirm(Request $request, $id)
