@@ -31,16 +31,15 @@ Route::get('/requests', [UserController::class, 'showRequests'])->name('showRequ
 Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
 Route::put('/comfirm/{id}', [UserController::class, 'comfirm'])->name('comfirm');
 Route::get('/delete-friend/{id}', [UserController::class, 'deleteFriend'])->name('deleteFriend');
-Route::get('/delete-message/{id}', [UserController::class, 'deleteMessage'])->name('deleteMessage');
 
 
 Route::get('/friends', [UserController::class, 'showFriends'])->name('showFriends');
 Route::get('/chat-rooms', [UserController::class, 'showChatRooms'])->name('showChatRooms');
 Route::get('/chat/{id}', [UserController::class, 'showChat'])->name('showChat');
+Route::get('/deleteMessage/{id}', [UserController::class, 'deleteMessage'])->name('deleteMessage');
 
 
 
-// Route::put('update-cart/{id}', [CartController::class, 'update']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/create', [UserController::class, 'create'])->name('create');
 Route::post('/check', [UserController::class, 'check'])->name('check');

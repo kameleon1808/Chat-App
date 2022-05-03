@@ -28,7 +28,7 @@
                             </div>
                             <span class="badge badge-primary rounded-pill">{{ $user->created_at }}</span>
 
-                            <a href="{{ 'delete-message/' . $user->id }}" class="btn btn-link btn-sm btn-rounded">
+                            <a href="{{ 'deleteMessage/' . $user->id }}" class="btn btn-link btn-sm btn-rounded">
                                 Delete
                             </a>
                         </li><br>
