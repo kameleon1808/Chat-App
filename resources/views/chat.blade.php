@@ -13,6 +13,12 @@
 
             <div>
                 <ul class="list-group list-group-light list-group-numbered">
+                    {{-- @if ($users[0]->count()) --}}
+                    @if (session()->get('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
                     @foreach ($users as $user)
                         <input type="hidden" name="room_id" value="{{ $user->room_id }}">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -23,6 +29,13 @@
                             <span class="badge badge-primary rounded-pill">{{ $user->created_at }}</span>
                         </li><br>
                     @endforeach
+                    {{-- @else
+                        <tr>
+                            <td>
+                                No user found
+                            </td>
+                        </tr>
+                    @endif --}}
                 </ul>
             </div>
 
@@ -30,7 +43,7 @@
             <form action="{{ route('send-message') }}" method="post">
                 @csrf
                 <div class="form-outline">
-                    <input type="hidden" name="room_id" value="{{ $users[0]->room_id }}">
+                    <input type="hidden" name="room_id" value="{{ $room_id }}">
                     <textarea name="message" class="form-control" id="textAreaExample" rows="4"></textarea>
                     <label class="form-label" for="textAreaExample">Message</label>
                 </div>

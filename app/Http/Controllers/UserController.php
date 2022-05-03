@@ -213,14 +213,14 @@ class UserController extends Controller
     {
         $chat = ChatRoom::where('id', $id)->firstOrFail();
         $user = Auth::id();
+        $room_id = $chat->id;
 
         $users = DB::table('users')
             ->join('messages', 'users.id', '=', 'messages.user_id')
-            ->where('room_id', $chat->id)
+            ->where('messages.room_id', $chat->id)
             ->get();
-        // dd($users);
 
-        return view('chat', compact('users'));
+        return view('chat', compact('users', 'room_id'));
     }
 
     public function createMessage(Request $request)
@@ -233,7 +233,6 @@ class UserController extends Controller
         $mess->message_text = $message_text;
         $mess->user_id = $user_id;
         $mess->room_id = $room_id;
-        // dd($mess);
         $mess->save();
 
         return redirect()->back();
