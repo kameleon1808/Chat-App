@@ -45,18 +45,15 @@ class FriendsController extends Controller
 
     public function showFriends(Request $request)
     {
-        $chat = Auth::id();
+        // $chat = Auth::id();
+        // $users = DB::table('user_friends')
+        //     ->join('users', 'user_friends.user_id', '=', 'users.id')
+        //     ->join('friends', 'user_friends.friend_id', '=', 'friends.id')
+        //     ->where('user_id', '!=', $chat)
+        //     ->get();
+        // return view('friends', compact('users'));
 
-        $users = DB::table('user_friends')
-            ->join('users', 'user_friends.user_id', '=', 'users.id')
-            ->join('friends', 'user_friends.friend_id', '=', 'friends.id')
-
-            ->where('user_id', '!=', $chat)
-            ->get();
-
-        // dd($users);
-
-        return view('friends', compact('users'));
+        
     }
 
     public function comfirm(Request $request, $id)
