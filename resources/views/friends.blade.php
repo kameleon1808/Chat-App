@@ -21,9 +21,9 @@
                                         style="width: 45px; height: 45px" class="rounded-circle" />
 
                                     <div class="ms-3">
-                                        <p class="fw-bold mb-1">John Doe</p>
+                                        <p class="fw-bold mb-1">{{ $user->email }}</p>
                                         {{-- <p class="text-muted mb-0">{{ $user->email }}</p> --}}
-                                        <p class="text-muted mb-0">{{ $user->email }}</p>
+                                        {{-- <p class="text-muted mb-0">{{ $user->email }}</p> --}}
 
 
                                         {{-- ========================================================= --}}
