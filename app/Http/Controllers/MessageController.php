@@ -46,7 +46,7 @@ class MessageController extends Controller
     public function deleteMessage($id)
     {
         $data = Message::find($id);
-        dd($data->user_id == Auth::id());
+        // dd($data->user_id == Auth::id());
 
         if ($data->user_id == Auth::id()) {
             $data->delete();

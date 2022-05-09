@@ -22,37 +22,23 @@
 
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1">{{ $user->email }}</p>
-                                        {{-- <p class="text-muted mb-0">{{ $user->email }}</p> --}}
-                                        {{-- <p class="text-muted mb-0">{{ $user->email }}</p> --}}
 
-
-                                        {{-- ========================================================= --}}
-                                        {{-- @if ($user->sender = $user->id)
-                                            <p>If grana</p>
-                                            <p class="text-muted mb-0">{{ $user->email }}</p>
-                                        @elseif ($user->receiver = $user->id)
-                                            <p>Else grana</p>
-                                            <p class="text-muted mb-0">{{ $user->email }}</p>
-                                        @endif --}}
-                                        {{-- ========================================================= --}}
                                         <input type="hidden" name="receiver" value="{{ $user->id }}">
-                                        {{-- <input type="hidden" name="email" value="{{ $user->email }}"> --}}
-                                        {{-- <input type="hidden" name="sender" value="{{ $user->sender }}"> --}}
                                     </div>
                                 </div>
                             </td>
 
                             <td>
-                                <a href="{{ 'delete-friend/' . $user->id }}" class="btn btn-link btn-sm btn-rounded">
+                                {{-- <a href="{{ 'delete-friend/' . $user->id }}" class="btn btn-link btn-sm btn-rounded">
                                     Delete
-                                </a>
-                                {{-- <form action="{{ url('comfirm/' . $user->id) }}" method="post">
+                                </a> --}}
+                                <form action="/delete-friend/{{ $user->id }}" method="get">
+                                    <input type="hidden" name="receiver" value="{{ $user->id }}">
+
                                     @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-link btn-sm btn-rounded">
-                                        Add friend
-                                    </button>
-                                </form> --}}
+                                    @method('DELETE')
+                                    <input value="Delete" type="submit" class="btn btn-link btn-sm btn-rounded">
+                                </form>
                             </td>
                         </tr>
                     @endforeach

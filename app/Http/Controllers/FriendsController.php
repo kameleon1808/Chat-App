@@ -31,15 +31,17 @@ class FriendsController extends Controller
     public function delete($id)
     {
         $data = FriendRequests::find($id);
-        dd($data);
+        // dd($data);
         $data->delete();
         return redirect()->back()->with('success', 'You are delete request');
     }
 
-    public function deleteFriend($id)
+    public function deleteFriend(Request $request, $id)
     {
         $data = FriendRequests::find($id);
-        dd($data);
+        $data2 = $request->input('receiver');
+        dd($data2);
+
         $data->delete();
         return redirect()->back()->with('success', 'You are delete friend');
     }
@@ -61,7 +63,6 @@ class FriendsController extends Controller
         endforeach;
 
         $users = array_merge($friends, $friends2);
-
 
         return view('friends', compact('users'));
     }

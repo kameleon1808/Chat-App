@@ -18,6 +18,8 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk
                             of
                             the card's content.</p>
+                        <input type="hidden" name="id" value="{{ $data->id }}">
+
                         <button type="submit" class="btn btn-primary">Add friend</button>
 
                         {{-- <a href="{{ route('chat') }}" type="button" class="btn btn-primary">Send message</a> --}}
