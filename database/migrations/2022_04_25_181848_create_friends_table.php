@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('friends', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            // $table->bigInteger('sender')->unsigned();
-            // $table->foreign('sender')->references('id')->on('users')->onDelete('cascade');
-            // $table->bigInteger('receiver')->unsigned();
-            // $table->foreign('receiver')->references('id')->on('users')->onDelete('cascade');
+            // $table->string('name')->unique();
+            $table->bigInteger('sender')->unsigned();
+            $table->foreign('sender')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('receiver')->unsigned();
+            $table->foreign('receiver')->references('id')->on('users')->onDelete('cascade');
+
+            $table->integer('acted_user')->index();
+            // $table->enum('status', ['pending', 'confirmed', 'blocked']);
 
             $table->timestamps();
         });

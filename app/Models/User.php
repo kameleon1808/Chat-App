@@ -44,22 +44,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function friend_request()
-    {
-        return $this->hasMany(FriendRequests::class, 'sender');
-    }
-
-    public function friends()
-    {
-        return $this->hasMany(Friends::class, 'sender');
-    }
-
-    // public function chat_rooms()
+    // public function friend_request()
     // {
-    //     // return $this->hasMany(ChatRoom::class, 'user_one');
-    //     return $this->hasMany(ChatRoom::class, 'user_one', 'user_two');
+    //     return $this->hasMany(FriendRequests::class, 'sender');
     // }
 
+    // public function friends()
+    // {
+    //     return $this->hasMany(Friends::class, 'sender');
+    // }
+
+    public function friend_requests()
+    {
+        return $this->hasMany(FriendRequests::class, 'receiver')
+            ->where('status', 'pending');
+    }
+
+
+    // =========================================================================================
     public function message()
     {
         return $this->hasMany(Message::class, 'user_id');
@@ -72,8 +74,8 @@ class User extends Authenticatable
         // return $this->hasMany(ChatRoom::class, 'user_one', 'user_two');
     }
 
-    public function users_friend()
-    {
-        return $this->hasMany(UserFriend::class, 'user_id');
-    }
+    // public function users_friend()
+    // {
+    //     return $this->hasMany(UserFriend::class, 'user_id');
+    // }
 }

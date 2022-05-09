@@ -12,8 +12,23 @@ class Friends extends Model
 
     protected $guarded = [];
 
-    public function users_friend()
+    // public function users_friend()
+    // {
+    //     return $this->hasMany(User::class, 'friend_id');
+    // }
+
+    protected function friendsOfThisUser()
     {
-        return $this->hasMany(UserFriend::class, 'friend_id');
+        return $this->belongsToMany(User::class, 'friendships', 'sender', 'receiver')
+            ->withPivot('status')
+            ->wherePivot('status', 'confirmed');
+    }
+
+    // friendship that this user was asked for
+    protected function thisUserFriendOf()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'receiver', 'sender')
+            ->withPivot('status')
+            ->wherePivot('status', 'confirmed');
     }
 }

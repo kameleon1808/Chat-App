@@ -31,7 +31,7 @@ class MessageController extends Controller
 
     public function showChat($id)
     {
-        $chat = ChatRoom::where('id', $id)->firstOrFail();
+        $chat = ChatRoom::where('id', $id)->orderBy('created_at')->firstOrFail();
         $user = Auth::id();
         $room_id = $chat->id;
 

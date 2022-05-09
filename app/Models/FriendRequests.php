@@ -12,8 +12,24 @@ class FriendRequests extends Model
 
     protected $guarded = [];
 
-    public function user()
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+
+    protected function friendsOfThisUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'friend_requests', 'sender', 'receiver')
+            ->withPivot('status')
+            ->wherePivot('status', 'confirmed');
+    }
+
+    // friendship that this user was asked for
+    protected function thisUserFriendOf()
+    {
+        return $this->belongsToMany(User::class, 'friend_requests', 'receiver', 'sender')
+            ->withPivot('status')
+            ->wherePivot('status', 'confirmed');
     }
 }

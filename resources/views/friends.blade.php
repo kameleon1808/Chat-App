@@ -22,7 +22,8 @@
 
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1">John Doe</p>
-                                        <p class="text-muted mb-0">{{ $user->email }}</p>
+                                        {{-- <p class="text-muted mb-0">{{ $user->email }}</p> --}}
+                                        <p class="text-muted mb-0">{{ $user->id }}</p>
 
 
                                         {{-- ========================================================= --}}
