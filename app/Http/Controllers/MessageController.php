@@ -26,7 +26,7 @@ class MessageController extends Controller
             ->where('user_id', $chat)
             ->get();
 
-        return view('chats', compact('users'));
+        return view('home', compact('users'));
     }
 
     public function showChat($id)

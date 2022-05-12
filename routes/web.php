@@ -22,7 +22,7 @@ Auth::routes();
 
 
 Route::view('/search-res', 'search-res')->name('search-res');
-Route::view('/chat-rooms', 'chat-rooms')->name('chat-rooms');
+// Route::view('/chat-rooms', 'chat-rooms')->name('chat-rooms');
 Route::view('/home', 'home')->name('home');
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register')->name('register');
@@ -37,7 +37,7 @@ Route::post('/search', [UserController::class, 'search'])->name('search');
 //============================================================================================
 
 //====================MESSAGE CONTROLLER======================================================
-Route::get('/chat-rooms', [MessageController::class, 'showChatRooms'])->name('showChatRooms');
+Route::get('/home', [MessageController::class, 'showChatRooms'])->name('showChatRooms');
 Route::get('/chat/{id}', [MessageController::class, 'showChat'])->name('showChat');
 //-------------?
 Route::get('/deleteMessage/{id}', [MessageController::class, 'deleteMessage'])->name('deleteMessage');
