@@ -59,12 +59,13 @@
                 <nav class="navbar navbar-dark bg-dark">
                     <div class="container-fluid">
                         <a class="navbar-brand"></a>
-                        <form class="d-flex input-group w-auto">
-                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                                aria-describedby="search-addon" />
-                            <span class="input-group-text border-0" id="search-addon">
-                                <i class="fas fa-search"></i>
-                            </span>
+                        <form action="{{ route('search') }}" method="post">
+                            @csrf
+                            <div class="input-group">
+                                <input type="search" name="search" class="form-control rounded" placeholder="Search"
+                                    aria-label="Search" aria-describedby="search-addon" />
+                                <button type="submit" class="btn btn-outline-light">Search</button>
+                            </div>
                         </form>
                     </div>
                 </nav>
