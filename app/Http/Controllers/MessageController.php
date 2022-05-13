@@ -38,6 +38,7 @@ class MessageController extends Controller
         $users = DB::table('users')
             ->join('messages', 'users.id', '=', 'messages.user_id')
             ->where('messages.room_id', $chat->id)
+            // ->oldest()
             ->get();
 
         return view('chat', compact('users', 'room_id'));
