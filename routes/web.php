@@ -37,7 +37,7 @@ Route::post('/search', [UserController::class, 'search'])->name('search');
 //============================================================================================
 
 //====================MESSAGE CONTROLLER======================================================
-Route::get('/home', [MessageController::class, 'showChatRooms'])->name('showChatRooms');
+Route::get('/chat-rooms', [MessageController::class, 'showChatRooms'])->name('showChatRooms');
 Route::get('/chat/{id}', [MessageController::class, 'showChat'])->name('showChat');
 //-------------?
 Route::get('/deleteMessage/{id}', [MessageController::class, 'deleteMessage'])->name('deleteMessage');
