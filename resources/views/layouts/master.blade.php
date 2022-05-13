@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row min-vh-100 flex-column flex-md-row">
             <aside class="col-12 col-md-3 col-xl-2 p-0 bg-dark ">
@@ -56,7 +55,6 @@
                 </nav>
             </aside>
 
-
             <main class="col px-0 flex-grow-1">
                 <nav class="navbar navbar-dark bg-dark">
                     <div class="container-fluid">
@@ -71,22 +69,17 @@
                     </div>
                 </nav>
                 <div class="container py-3">
-
                     @yield('home')
                     @yield('requests')
                     @yield('friends')
                     @yield('chats')
                     @yield('chat')
-
+                    @yield('search-res')
+                    @yield('user-info')
                 </div>
             </main>
         </div>
-
-
     </div>
-
-
-
 </body>
 
 </html>
