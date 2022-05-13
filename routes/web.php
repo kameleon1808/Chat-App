@@ -19,6 +19,9 @@ use App\Http\Controllers\MessageController;
 
 
 Auth::routes();
+Route::get('/test', function () {
+    return view('layouts.master');
+});
 
 
 Route::view('/search-res', 'search-res')->name('search-res');
