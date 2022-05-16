@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('search-res')
-
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
@@ -10,39 +9,38 @@
             </tr>
         </thead>
         <tbody>
-            @if ($users->count())
-                @foreach ($users as $user)
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
-                                    style="width: 45px; height: 45px" class="rounded-circle" />
+            {{-- @if ($users->count()) --}}
+            @foreach ($users as $user)
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                                style="width: 45px; height: 45px" class="rounded-circle" />
 
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">{{ $user->email }}</p>
-                                    <input type="hidden" name="receiver" value="{{ $user->id }}">
-                                </div>
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">John Doe</p>
+                                <p class="text-muted mb-0">{{ $user->email }}</p>
+                                <input type="hidden" name="receiver" value="{{ $user->id }}">
                             </div>
-                        </td>
+                        </div>
+                    </td>
 
-                        <td>
-                            <a href="{{ 'user-info/' . $user['id'] }}" class="btn btn-link btn-sm btn-rounded">
-                                View details
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
+                    <td>
+                        <a href="{{ 'user-info/' . $user['id'] }}" class="btn btn-link btn-sm btn-rounded">
+                            View details
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+            {{-- @else
                 <tr>
                     <td>
                         No user found
                     </td>
                 </tr>
-            @endif
+            @endif --}}
 
 
         </tbody>
     </table>
-
 @endsection
