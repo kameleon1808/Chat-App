@@ -31,17 +31,28 @@ class FriendsController extends Controller
     public function delete($id)
     {
         $data = FriendRequests::find($id);
+<<<<<<< Updated upstream
         // dd($data);
+=======
+        dd($data);
+>>>>>>> Stashed changes
         $data->delete();
         return redirect()->back()->with('success', 'You are delete request');
     }
 
+<<<<<<< Updated upstream
     public function deleteFriend(Request $request, $id)
     {
         $data = FriendRequests::find($id);
         $data2 = $request->input('receiver');
         dd($data2);
 
+=======
+    public function deleteFriend($id)
+    {
+        $data = FriendRequests::find($id);
+        dd($data);
+>>>>>>> Stashed changes
         $data->delete();
         return redirect()->back()->with('success', 'You are delete friend');
     }
@@ -51,19 +62,31 @@ class FriendsController extends Controller
         $chat = Auth::id();
 
         $friends = array();
+<<<<<<< Updated upstream
         $f1 = FriendRequests::where('is_accepted', 1)->where('sender', $chat)->get();
+=======
+        $f1 = FriendRequests::where('sender', $chat)->get();
+>>>>>>> Stashed changes
         foreach ($f1 as $friendship) :
             array_push($friends, User::find($friendship->receiver));
         endforeach;
 
         $friends2 = array();
+<<<<<<< Updated upstream
         $f2 = FriendRequests::where('is_accepted', 1)->where('receiver', $chat)->get();
+=======
+        $f2 = FriendRequests::where('receiver', $chat)->get();
+>>>>>>> Stashed changes
         foreach ($f2 as $friendship) :
             array_push($friends, User::find($friendship->sender));
         endforeach;
 
         $users = array_merge($friends, $friends2);
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         return view('friends', compact('users'));
     }
 
