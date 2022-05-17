@@ -51,20 +51,17 @@ class FriendsController extends Controller
 
         $friends = array();
         $f1 = FriendRequests::where('is_accepted', 1)->where('sender', $chat)->get();
-        $f1 = FriendRequests::where('sender', $chat)->get();
         foreach ($f1 as $friendship) :
             array_push($friends, User::find($friendship->receiver));
         endforeach;
 
         $friends2 = array();
         $f2 = FriendRequests::where('is_accepted', 1)->where('receiver', $chat)->get();
-        $f2 = FriendRequests::where('receiver', $chat)->get();
         foreach ($f2 as $friendship) :
             array_push($friends, User::find($friendship->sender));
         endforeach;
 
         $users = array_merge($friends, $friends2);
-        // dd($f1, $f2);
 
         return view('friends', compact('users'));
     }
