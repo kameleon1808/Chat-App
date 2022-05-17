@@ -4,7 +4,7 @@
         <div class="text-center p-3">
             <img src="https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg"
                 alt="profile picture" class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow" />
-            <a href="#"
+            <a href="{{ route('home') }}"
                 class="navbar-brand mx-0 font-weight-bold  text-nowrap">{{ auth()->guard('web')->user()->email }}</a>
         </div>
         <button type="button" class="navbar-toggler border-0 order-1" data-toggle="collapse" data-target="#nav"
