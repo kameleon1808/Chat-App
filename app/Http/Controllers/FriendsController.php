@@ -64,7 +64,7 @@ class FriendsController extends Controller
         endforeach;
 
         $users = array_merge($friends, $friends2);
-
+        // dd($f1, $f2);
 
         return view('friends', compact('users'));
     }
