@@ -42,9 +42,7 @@ Route::post('/search', [UserController::class, 'search'])->name('search');
 //====================MESSAGE CONTROLLER======================================================
 Route::get('/chat-rooms', [MessageController::class, 'showChatRooms'])->name('showChatRooms');
 Route::get('/chat/{id}', [MessageController::class, 'showChat'])->name('showChat');
-//-------------?
 Route::get('/deleteMessage/{id}', [MessageController::class, 'deleteMessage'])->name('deleteMessage');
-//-------------?
 Route::post('/create-chat', [MessageController::class, 'createChatRoom'])->name('create-chat');
 Route::post('/send-message', [MessageController::class, 'createMessage'])->name('send-message');
 //============================================================================================
@@ -52,7 +50,9 @@ Route::post('/send-message', [MessageController::class, 'createMessage'])->name(
 //====================FRIENDS CONTROLLER======================================================
 Route::get('/requests', [FriendsController::class, 'showRequests'])->name('showRequests');
 Route::get('/delete/{id}', [FriendsController::class, 'delete'])->name('delete');
+//-------------?
 Route::get('/delete-friend/{id}', [FriendsController::class, 'deleteFriend'])->name('deleteFriend');
+//-------------?
 Route::get('/friends', [FriendsController::class, 'showFriends'])->name('showFriends');
 Route::put('/comfirm/{id}', [FriendsController::class, 'comfirm'])->name('comfirm');
 Route::post('/add-friend', [FriendsController::class, 'sendRequest'])->name('add-friend');

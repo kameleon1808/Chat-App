@@ -31,10 +31,11 @@
                                     Delete
                                 </a> --}}
                         <form action="/delete-friend/{{ $user->id }}" method="get">
-                            <input type="hidden" name="receiver" value="{{ $user->id }}">
 
                             @csrf
                             @method('DELETE')
+                            {{-- <input type="hidden" name="receiver" value="{{ $user->id }}"> --}}
+
                             <input value="Delete" type="submit" class="btn btn-link btn-sm btn-rounded">
                         </form>
                     </td>
